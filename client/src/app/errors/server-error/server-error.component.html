@@ -1,0 +1,7 @@
+<h1>500 : Internal Server Error</h1>
+<h3>Sorry: something went wrong :(</h3>
+
+<ng-container *ngIf="err">
+    <h5 class="text-danger">Error: {{err.messages}}</h5>
+    <code class="mt-5">{{err.details}}</code>
+</ng-container>

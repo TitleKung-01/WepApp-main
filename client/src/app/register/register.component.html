@@ -1,0 +1,26 @@
+<form #regisForm="ngForm" (ngSubmit)="register()" autocomplete="off">
+    <!-- # คือ Template Reference Variable -->
+    <h2 class="text-center text-primary">Sign up</h2>
+    <hr>
+    <div class="mb-5">
+        <input type="text" class="form-control" placeholder="Username" name="username" 
+                [(ngModel)]="model.username">
+    </div>
+    <div class="mb-5">
+        <input type="password" class="form-control" placeholder="Password" name="password" 
+                [(ngModel)]="model.password">
+    </div>
+    <div class="text-center">
+        <button class="btn btn-success me-5" type="submit">Register</button>
+        <button class="btn btn-default me-5" type="button" (click)="cancel()">Cancel</button>
+    </div>
+
+    <!-- <div class="mb-5">
+        <label>component communication example</label>
+        <select class="form-select">
+            <option *ngFor="let user of usersFromHomeComponent" [value]="user.userName">
+                {{user.userName}}
+            </option>
+        </select>
+    </div> -->
+</form>
