@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   {
     path: '', runGuardsAndResolvers: 'always', canActivate: [authGuard], children: [
+      { path: 'errors', component: TestErrorComponent },
       { path: 'members', component: MemberListComponent },
       { path: 'members/:id', component: MemberDetailComponent },
       { path: 'lists', component: ListsComponent },
@@ -23,7 +24,7 @@ const routes: Routes = [
   { path: 'errors', component: TestErrorComponent },
   { path: 'not-found', component: NotFoundComponent },
   { path: 'server-error', component: ServerErrorComponent },
-  { path: '**', component: HomeComponent, pathMatch: 'full' },
+  { path: '**', component: NotFoundComponent, pathMatch: 'full' },
 ]
 
 @NgModule({

@@ -1,14 +1,15 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http'
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-test-error',
   templateUrl: './test-error.component.html',
   styleUrls: ['./test-error.component.css']
 })
+
 export class TestErrorComponent {
-  validationErrors: string[] = []
   baseUrl = 'https://localhost:7777/api/'
+  validationErrors: string[] = []
 
   constructor(private http: HttpClient) { }
 

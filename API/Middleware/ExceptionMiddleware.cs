@@ -18,7 +18,6 @@ public class ExceptionMiddleware
         _env = env;
     }
 
-    //middleware ต้องมี InvokeAsync
     public async Task InvokeAsync(HttpContext httpContext)
     {
         try

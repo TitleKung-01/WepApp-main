@@ -16,7 +16,7 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
 import { ListsComponent } from './lists/lists.component'
 import { MessagesComponent } from './messages/messages.component'
 import { ToastrModule } from 'ngx-toastr'
-import { SharedModule } from './_modules/shared.module';
+import { SharedModule } from './_modules/shared.module'
 import { TestErrorComponent } from './errors/test-error/test-error.component'
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
