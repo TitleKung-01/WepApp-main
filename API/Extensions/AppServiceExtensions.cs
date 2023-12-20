@@ -20,6 +20,9 @@ public static class AppServiceExtensions
 
         services.AddScoped<ITokenService, TokenService>();
         // services.AddSingleton<ExceptionMiddleware>();
+        services.AddScoped<ITokenService, TokenService>();
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
 

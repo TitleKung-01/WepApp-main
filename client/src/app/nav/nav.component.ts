@@ -27,7 +27,7 @@ export class NavComponent implements OnInit {
   getCurrentUser() {
     this.accountService.currentUser$.subscribe({
       // next: user => this.isLogin = !!user, // user?true:false
-      error: err => console.log(err)
+      error: err => this.toastr.error(err)
     })
   }
 

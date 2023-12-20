@@ -22,15 +22,15 @@ namespace API.Data.Migrations
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
-            migrationBuilder.InsertData(
-table: "Users",
-columns: new[] { "Id", "UserName" },
-values: new object[,]{
-              {1,"Menta"},
-              {2,"Manita"},
-              {3,"asop"}
-}
-);
+            //             migrationBuilder.InsertData(
+            // table: "Users",
+            // columns: new[] { "Id", "UserName" },
+            // values: new object[,]{
+            //               {1,"Menta"},
+            //               {2,"Manita"},
+            //               {3,"asop"}
+            // }
+            // );
         }
 
         /// <inheritdoc />
