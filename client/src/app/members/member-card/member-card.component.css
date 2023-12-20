@@ -1,0 +1,27 @@
+.card-img-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.member-icons {
+    position: absolute;
+    bottom: -30%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 1;
+    display: flex; /* Add this line to use flexbox */
+    justify-content: center; /* Add this line to center icons horizontally */
+    align-items: center; /* Add this line to center icons vertically */
+    font-size: 0.8em; /* Add this line to make icons smaller */
+}
+
+.card-img-wrapper:hover .member-icons {
+    bottom: -10px;
+    opacity: 1;
+}
+
+.animate {
+    transition: all 0.2s ease-in-out;
+}

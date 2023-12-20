@@ -7,17 +7,17 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace API.Data.Migrations
+namespace api.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231108044439_InitCreate")]
+    [Migration("20231108050214_InitCreate")]
     partial class InitCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.8");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
 
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {

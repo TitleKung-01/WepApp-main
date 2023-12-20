@@ -5,7 +5,27 @@
   "projects": {
     "client": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "css",
+          "skipTests": true
+        },
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -16,20 +36,15 @@
             "outputPath": "dist/client",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/bootswatch/dist/sketchy/bootstrap.css",
+              "./node_modules/bootswatch/dist/Pulse/bootstrap.css",
               "src/styles.css",
-              "./node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },
@@ -55,7 +70,13 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -86,18 +107,10 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.css"],
             "scripts": []
           }
         }
@@ -105,6 +118,6 @@
     }
   },
   "cli": {
-    "analytics": "b06bb7a8-d3dd-4fda-a6af-7325e42c4f38"
+    "analytics": false
   }
 }

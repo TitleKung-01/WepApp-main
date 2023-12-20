@@ -1,17 +1,15 @@
-﻿using System;
-
-namespace API.Errors;
+﻿namespace api.Errors;
 
 public class ApiException
 {
-    public int StatusCode { get; set; } //highlight
-    public string Messages { get; set; } //highlight
-    public string? Details { get; set; } //highlight and "Ctrl + ."
+  public int StatusCode { get; set; }
+  public string Messages { get; set; }
+  public string Details { get; set; }
 
-    public ApiException(int statusCode, string messages, string? details)
-    {
-        StatusCode = statusCode;
-        Messages = messages;
-        Details = details;
-    }
+  public ApiException(int statusCode, string messages, string details)
+  {
+    StatusCode = statusCode;
+    Messages = messages;
+    Details = details;
+  }
 }

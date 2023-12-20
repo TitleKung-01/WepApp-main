@@ -8,17 +8,17 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace API.Data.Migrations
+namespace api.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231220025412_ExtendedUserEntity")]
+    [Migration("20231220023601_ExtendedUserEntity")]
     partial class ExtendedUserEntity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.14");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
 
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
@@ -57,11 +57,9 @@ namespace API.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<byte[]>("PasswordHash")
-                        .IsRequired()
                         .HasColumnType("BLOB");
 
                     b.Property<byte[]>("PasswordSalt")
-                        .IsRequired()
                         .HasColumnType("BLOB");
 
                     b.Property<string>("UserName")
@@ -72,13 +70,13 @@ namespace API.Data.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("API.Entities.Photo", b =>
+            modelBuilder.Entity("api.Photo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("AppUserID")
+                    b.Property<int?>("AppUserId")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsMain")
@@ -92,20 +90,16 @@ namespace API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserID");
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("Photos");
                 });
 
-            modelBuilder.Entity("API.Entities.Photo", b =>
+            modelBuilder.Entity("api.Photo", b =>
                 {
-                    b.HasOne("API.Entities.AppUser", "AppUser")
+                    b.HasOne("API.Entities.AppUser", null)
                         .WithMany("Photos")
-                        .HasForeignKey("AppUserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
+                        .HasForeignKey("AppUserId");
                 });
 
             modelBuilder.Entity("API.Entities.AppUser", b =>

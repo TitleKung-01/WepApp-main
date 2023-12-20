@@ -1,0 +1,39 @@
+.card-body {
+    padding: 20px;
+    /* Fix the padding property */
+    background-color: #f0f2f5;
+    /* Add a background color */
+    color: #000;
+
+}
+
+.card-footer {
+    padding: 10px;
+    /* Fix the padding property */
+    background-color: white;
+    border-top: none;
+    text-align: center;
+    /* Center the text */
+    font-weight: bold;
+    /* Make the text bold */
+}
+
+.img-thumbnail {
+    margin: 18px;
+    width: 90%;
+    height: 100%;
+    border-radius: 10px;
+    /* Add rounded corners */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    /* Add a shadow effect */
+}
+
+.card-body {
+    padding: 0, 20px;
+}
+
+.card-footer {
+    padding: 10, 10px;
+    background-color: white;
+    border-top: none;
+}

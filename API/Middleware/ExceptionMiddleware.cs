@@ -1,44 +1,45 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Text.Json;
-using API.Errors;
+using api.Errors;
 
-namespace API.Middleware;
+namespace api.Middleware;
 
 public class ExceptionMiddleware
 {
-    private readonly RequestDelegate _next;
-    private readonly ILogger<ExceptionMiddleware> _logger;
-    private readonly IHostEnvironment _env;
+  private readonly RequestDelegate _next;
+  private readonly ILogger<ExceptionMiddleware> _logger;
+  private readonly IHostEnvironment _env;
 
-    public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger, IHostEnvironment env)
+  public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger, IHostEnvironment env)
+  {
+    _next = next;
+    _logger = logger;
+    _env = env;
+  }
+
+  //middleware ต้องมี InvokeAsync
+  public async Task InvokeAsync(HttpContext httpContext)
+  {
+
+    try
     {
-        _next = next;
-        _logger = logger;
-        _env = env;
+      await _next(httpContext);
     }
-
-    public async Task InvokeAsync(HttpContext httpContext)
+    catch (Exception e)
     {
-        try
-        {
-            await _next(httpContext);
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e, e.Message);
-            httpContext.Response.ContentType = "application/json";
-            httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+      _logger.LogError(e, e.Message);
+      httpContext.Response.ContentType = "application/json";
+      httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-            var response = _env.IsDevelopment()
-                ? new ApiException(httpContext.Response.StatusCode, e.Message, e.StackTrace?.ToString())
-                : new ApiException(httpContext.Response.StatusCode, e.Message, "InternalServerError");
+      var response = _env.IsDevelopment()
+          ? new ApiException(httpContext.Response.StatusCode, e.Message, e.StackTrace?.ToString())
+          : new ApiException(httpContext.Response.StatusCode, e.Message, "InternalServerError");
 
-            var opt = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+      var opt = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 
-            var json = JsonSerializer.Serialize(response, opt);
+      var json = JsonSerializer.Serialize(response, opt);
 
-            await httpContext.Response.WriteAsync(json);
-        }
+      await httpContext.Response.WriteAsync(json);
     }
+  }
 }
