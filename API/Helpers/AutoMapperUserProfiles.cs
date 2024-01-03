@@ -20,7 +20,7 @@ public class AutoMapperUserProfiles : Profile
                     user => user.BirthDate.CalculateAge()
                     )
                 );
-
     CreateMap<Photo, PhotoDto>();
+    CreateMap<MemberUpdateDto, AppUser>();
   }
 }

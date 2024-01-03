@@ -20,9 +20,11 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
 
 using var scope = app.Services.CreateScope();
 var service = scope.ServiceProvider;
+
 try
 {
   var dataContext = service.GetRequiredService<DataContext>();
@@ -35,6 +37,5 @@ catch (System.Exception e)
   log.LogError(e, "an error occurred during migration !!");
 }
 
-app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
 
 app.Run();

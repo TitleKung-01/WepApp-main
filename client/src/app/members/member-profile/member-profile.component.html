@@ -1,0 +1,102 @@
+<div class="row" *ngIf="member">
+  <div class="col-4">
+    <div class="card">
+      <img
+        class="card-img-top img-thumbnail"
+        src="{{ member.mainPhotoUrl || './assets/images/default-user.png' }}"
+        alt="{{ member.aka }}"
+      />
+      <div class="card-body">
+        <div>
+          <strong>Name:</strong>
+          <p>{{ member.aka }}</p>
+        </div>
+        <div>
+          <strong>Location:</strong>
+          <p>{{ member.city }} / {{ member.country }}</p>
+        </div>
+        <div>
+          <strong>Age:</strong>
+          <p>{{ member.age }}</p>
+        </div>
+        <div>
+          <strong>Last active:</strong>
+          <p>{{ member.lastActive }}</p>
+        </div>
+        <div>
+          <strong>Member since:</strong>
+          <p>{{ member.created }}</p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="btn-group d-flex">
+          <button
+            type="submit"
+            form="profileForm"
+            [disabled]="!profileForm.dirty"
+            class="btn btn-success col-12"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-8">
+    <div class="alert alert-info pb-0" *ngIf="profileForm.dirty">
+      <p><strong>Info: </strong>Any unsaved change will be lost!</p>
+    </div>
+    <tabset class="member-tabset">
+      <tab heading="About">
+        <form
+          #profileForm="ngForm"
+          id="profileForm"
+          (ngSubmit)="updateProfile()"
+        >
+          <h5 class="mt-2">Description</h5>
+          <textarea
+            class="form-control"
+            name="introduction"
+            rows="6"
+            [(ngModel)]="member.introduction"
+          ></textarea>
+          <h5 class="mt-2">Looking For</h5>
+          <textarea
+            class="form-control"
+            name="lookingFor"
+            rows="6"
+            [(ngModel)]="member.lookingFor"
+          ></textarea>
+          <h5 class="mt-2">Interests</h5>
+          <textarea
+            class="form-control"
+            name="interests"
+            rows="6"
+            [(ngModel)]="member.interests"
+          ></textarea>
+          <h5 class="mt-2">Location Detail:</h5>
+          <div class="d-flex flex-row align-items-center">
+            <label for="city">City:</label>
+            <input
+              type="text"
+              [(ngModel)]="member.city"
+              name="city"
+              class="form-control mx-5"
+            />
+            <label for="country">City:</label>
+            <input
+              type="text"
+              [(ngModel)]="member.country"
+              name="country"
+              class="form-control mx-5"
+            />
+          </div>
+        </form>
+      </tab>
+      <tab heading="Edit Photos">
+        <p>under construct !!</p>
+      </tab>
+    </tabset>
+  </div>
+</div>

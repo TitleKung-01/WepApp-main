@@ -1,54 +1,61 @@
 <div class="row" *ngIf="member">
-    <div class="col-4">
-        <div class="card">
-            <img class="card-img-top img-thumbnail"
-                src="{{ member.mainPhotoUrl || './assets/images/default-user.png' }}" alt="{{ member.aka }}" />
-            <div class="card-body">
-                <div>
-                    <strong>Location:</strong>
-                    <p>{{ member.city }} / {{ member.country }}</p>
-                </div>
-                <div>
-                    <strong>Age:</strong>
-                    <p>{{ member.age }}</p>
-                </div>
-                <div>
-                    <strong>Last active:</strong>
-                    <p>{{ member.lastActive }}</p>
-                </div>
-                <div>
-                    <strong>Member since:</strong>
-                    <p>{{ member.created }}</p>
-                </div>
-            </div>
-            <div class="card-footer">
-                <div class="btn-group d-flex">
-                    <button class="btn btn-primary">Like</button>
-                    <button class="btn btn-success">Message</button>
-                </div>
-            </div>
+  <div class="col-4">
+    <div class="card">
+      <img
+        class="card-img-top img-thumbnail"
+        src="{{ member.mainPhotoUrl || './assets/images/default-user.png' }}"
+        alt="{{ member.aka }}"
+      />
+      <div class="card-body">
+        <div>
+          <strong>Location:</strong>
+          <p>{{ member.city }} / {{ member.country }}</p>
         </div>
+        <div>
+          <strong>Age:</strong>
+          <p>{{ member.age }}</p>
+        </div>
+        <div>
+          <strong>Last active:</strong>
+          <p>{{ member.lastActive }}</p>
+        </div>
+        <div>
+          <strong>Member since:</strong>
+          <p>{{ member.created }}</p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="btn-group d-flex">
+          <button class="btn btn-primary">Like</button>
+          <button class="btn btn-success">Message</button>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <div class="col-8">
-        <tabset class="member-tabset">
-            <tab heading="About">
-                <h5>Description</h5>
-                <p>{{ member.introduction }}</p>
-                <h6>Looking for</h6>
-                <p>{{ member.lookingFor }}</p>
-            </tab>
-            <tab heading="Interests">
-                <h5>Interests</h5>
-                <p>{{ member.interests }}</p>
-            </tab>
-            <tab heading="Photos" #photoTab="tab">
-                <gallery class="gallery" *ngIf="photoTab.active" [items]="photos"></gallery>
-            </tab>
-            <tab heading="Messages">
-                <h5>Messages</h5>
-                <p>messages....</p>
-            </tab>
-        </tabset>
-    </div>
+  <div class="col-8">
+    <tabset class="member-tabset">
+      <tab heading="About">
+        <h5>Description</h5>
+        <p>{{ member.introduction }}</p>
+        <h6>Looking for</h6>
+        <p>{{ member.lookingFor }}</p>
+      </tab>
+      <tab heading="Interests">
+        <h5>Interests</h5>
+        <p>{{ member.interests }}</p>
+      </tab>
+      <tab heading="Photos" #photoTab="tab">
+        <gallery
+          class="gallery"
+          *ngIf="photoTab.active"
+          [items]="photos"
+        ></gallery>
+      </tab>
+      <tab heading="Messages">
+        <h5>Messages</h5>
+        <p>messages....</p>
+      </tab>
+    </tabset>
+  </div>
 </div>

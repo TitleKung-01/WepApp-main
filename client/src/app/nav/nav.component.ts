@@ -13,7 +13,7 @@ export class NavComponent {
     private toastr: ToastrService,
     private router: Router,
     public accountService: AccountService
-  ) { }
+  ) {}
 
   model: { username: string | undefined; password: string | undefined } = {
     username: undefined,
@@ -29,7 +29,7 @@ export class NavComponent {
 
   login(): void {
     this.accountService.login(this.model).subscribe({
-      next: (response) => this.router.navigateByUrl('members'),
+      next: (response) => this.router.navigateByUrl('/members'),
       // error: (err) => this.toastr.error(err.error),
     });
   }

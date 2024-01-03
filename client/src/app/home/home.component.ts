@@ -15,7 +15,7 @@ export class HomeComponent {
 
   users: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     // this.getUsers();

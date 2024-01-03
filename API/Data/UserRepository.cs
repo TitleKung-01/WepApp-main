@@ -23,21 +23,21 @@ public class UserRepository : IUserRepository
   }
 
 
-  public async Task<MemberDto> GetUserByIdAsync(int id)
-  {
-    return await _dataContext.Users
-        .Where(user => user.Id == id)
-        .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
-        .SingleOrDefaultAsync();
-  }
+  // public async Task<MemberDto> GetUserByIdAsync(int id)
+  // {
+  //   return await _dataContext.Users
+  //       .Where(user => user.Id == id)
+  //       .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+  //       .SingleOrDefaultAsync();
+  // }
 
-  public async Task<MemberDto> GetUserByUserNameAsync(string username)
-  {
-    return await _dataContext.Users
-        .Where(user => user.UserName == username)
-        .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
-        .SingleOrDefaultAsync();
-  }
+  // public async Task<MemberDto> GetUserByUserNameAsync(string username)
+  // {
+  //   return await _dataContext.Users
+  //       .Where(user => user.UserName == username)
+  //       .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+  //       .SingleOrDefaultAsync();
+  // }
 
   public async Task<IEnumerable<MemberDto>> GetUsersAsync()
   {
@@ -56,5 +56,20 @@ public class UserRepository : IUserRepository
         .SingleOrDefaultAsync();
   }
 
-  public void Update(AppUser user) => _dataContext.Entry(user).State = EntityState.Modified;
+  public void Update(AppUser user)
+  {
+    _dataContext.Entry(user).State = EntityState.Modified;
+  }
+
+  public async Task<AppUser> GetUserByIdAsync(int id)
+  {
+    return await _dataContext.Users.FindAsync(id);
+  }
+
+  public async Task<AppUser> GetUserByUserNameAsync(string username)
+  {
+    return await _dataContext.Users
+        .Include(user => user.Photos)
+        .SingleOrDefaultAsync(user => user.UserName == username);
+  }
 }

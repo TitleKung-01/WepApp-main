@@ -1,65 +1,64 @@
-.navbar a {
-    color: white;
+@import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@100;200;300;400;500;600;700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  font-family: 'Anuphan', sans-serif;
 }
 
 .tab-panel {
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 4px;
-    background-color: white;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
 }
 
 .member-tabset>.nav-tabs>li>.nav-link {
-    border: none;
-    background: none !important;
-    color: #3b5998;
+  border: none;
+  background: none !important;
 }
 
 .nav-tabs>li.open,
 .member-tabset>.nav-tabs>li:hover {
-    border-bottom: 4px solid #3b5998;
-}
-
-
-.member-tabset>.nav-tabs>li.open>a,
-.member-tabset>.nav-tabs>li:hover>a {
-    border: 0;
-    background: none !important;
-    color: #333333;
+  border-bottom: 4px solid #fbcdcf;
 }
 
 .member-tabset>.nav-tabs>li.open>a,
 .member-tabset>.nav-tabs>li:hover>a {
-    color: #3b5998;
+  border: 0;
+  background: none !important;
+  color: #333333;
+}
+
+.member-tabset>.nav-tabs>li.open>a>i,
+.member-tabset>.nav-tabs>li:hover>a>i {
+  color: #a6a6a6;
 }
 
 .member-tabset>.nav-tabs>li.open .dropdown-menu,
 .member-tabset>.nav-tabs>li:hover .dropdown-menu {
-    margin-top: 0px;
+  margin-top: 0px;
 }
 
 .member-tabset>.nav-tabs>li.active {
-    border-bottom: 4px solid #E95420;
-    position: relative;
+  border-bottom: 4px solid #E95420;
+  position: relative;
 }
 
 .member-tabset>.nav-tabs>li.active>a {
-    border: 0 !important;
-    color: #333333;
+  border: 0 !important;
+  color: #333333;
 }
 
 .member-tabset>.nav-tabs>li.active>a>i {
-    color: #000000;
+  color: #404040;
 }
 
 .member-tabset>.tab-content {
-    margin-top: -3px;
-    background-color: #fff;
-    border: 0;
-    border-top: 1px solid #eee;
-    padding: 15px 0;
+  margin-top: -3px;
+  background-color: #fff;
+  border: 0;
+  border-top: 1px solid #eee;
+  padding: 15px 0;
 }
 
 .gallery {
-    height: 1000px;
+  height: 700px;
 }

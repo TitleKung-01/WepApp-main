@@ -1,6 +1,5 @@
-
-export interface photo {
-    id: number;
-    url: string;
-    isMain: boolean;
+export interface Photo {
+  id: number;
+  url: string;
+  isMain: boolean;
 }
