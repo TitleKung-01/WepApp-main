@@ -1,0 +1,18 @@
+<div class="row" *ngIf="member">
+  <div class="col-2" *ngFor="let photo of member.photos">
+    <img
+      src="{{ photo.url }}"
+      alt="{{ member.aka }} photo"
+      class="img-thumbnail mb-2"
+    />
+    <div class="text-center">
+      <button class="btn btn-sm px-2 py-0">
+        <fa-icon [icon]="faStar"></fa-icon>
+      </button>
+      <button class="btn btn-sm btn-danger px-2 py-0">
+        <fa-icon [icon]="faTrashCan"></fa-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
