@@ -1,25 +1,36 @@
-﻿using api;
-using API.Data;
+﻿using API.Data;
+using API.Helpers;
 using API.Interfaces;
+using API.Middleware;
+using API.Services;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace API.Extensions;
 
 public static class AppServiceExtensions
 {
-  public static IServiceCollection AddAppServices(this IServiceCollection services, IConfiguration conf)
-  {
-    services.AddDbContext<DataContext>(opt =>
+    public static IServiceCollection AddAppServices(this IServiceCollection services, IConfiguration conf)
     {
-      opt.UseSqlite(conf.GetConnectionString("SqliteConnection"));
-    });
-    services.AddCors();
-    services.AddScoped<ITokenService, TokenService>();
-    services.AddScoped<IUserRepository, UserRepository>();
-    services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-    services.Configure<CloudinarySettings>(conf.GetSection("CloudinarySettings"));
-    services.AddScoped<IImageService, ImageService>();
+        services.AddDbContext<DataContext>(opt =>
+            {
+                opt.UseSqlite(conf.GetConnectionString("DefaultConnection"));
+            });
 
-    return services;
-  }
+        services.AddCors();
+
+        services.AddScoped<ITokenService, TokenService>();
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+        services.Configure<CloudinarySettings>(conf.GetSection("CloudinarySettings"));
+        services.AddScoped<IImageService, ImageService>();
+        services.AddScoped<LogUserActivity>();
+        // services.AddSingleton<ExceptionMiddleware>();
+
+
+
+
+        return services;
+    }
+
 }

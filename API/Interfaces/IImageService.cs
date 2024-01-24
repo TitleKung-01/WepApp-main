@@ -1,7 +1,8 @@
 ﻿using System;
-
 using CloudinaryDotNet.Actions;
+
 namespace API.Interfaces;
+
 public interface IImageService
 {
     Task<ImageUploadResult> AddImageAsync(IFormFile file);

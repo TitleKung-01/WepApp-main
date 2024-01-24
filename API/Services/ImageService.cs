@@ -1,8 +1,12 @@
 ﻿using System;
+using API.Helpers;
 using API.Interfaces;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.Extensions.Options;
+
+namespace API.Services;
+
 public class ImageService : IImageService
 {
     private readonly Cloudinary _cloudinary;
@@ -24,7 +28,7 @@ public class ImageService : IImageService
             {
                 File = new FileDescription(file.FileName, stream),
                 Transformation = new Transformation().Height(500).Width(500).Crop("fill").Gravity("face"),
-                Folder = "IMG_Uploads"
+                Folder = "dotnet7-tinner"
             };
             uploadResualt = await _cloudinary.UploadAsync(uploadParams);
         }

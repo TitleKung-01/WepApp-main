@@ -1,3 +1,15 @@
+.card:hover img {
+    transform: scale(1.1, 1.1);
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
+
+.card img {
+    transform: scale(1.0, 1.0);
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out;
+}
+
 .card-img-wrapper {
     overflow: hidden;
     position: relative;
@@ -10,11 +22,7 @@
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    opacity: 1;
-    display: flex; /* Add this line to use flexbox */
-    justify-content: center; /* Add this line to center icons horizontally */
-    align-items: center; /* Add this line to center icons vertically */
-    font-size: 0.8em; /* Add this line to make icons smaller */
+    opacity: 0;
 }
 
 .card-img-wrapper:hover .member-icons {

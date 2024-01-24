@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace api.Data.Migrations
+namespace API.Data.Migrations
 {
     /// <inheritdoc />
     public partial class InitCreate : Migration
@@ -21,16 +21,15 @@ namespace api.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
-                }
-            );
-
-            // migrationBuilder.InsertData(
-            //     table: "Users",
-            //     columns: new[] { "Id", "UserName" },
-            //     values: new object[,]{
-            //   {1,"Menta"},
-            //   {2,"Manita"}
-            //     }
+                });
+            //             migrationBuilder.InsertData(
+            // table: "Users",
+            // columns: new[] { "Id", "UserName" },
+            // values: new object[,]{
+            //               {1,"Menta"},
+            //               {2,"Manita"},
+            //               {3,"asop"}
+            // }
             // );
         }
 

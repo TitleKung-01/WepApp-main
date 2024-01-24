@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace api.Data.Migrations
+namespace API.Data.Migrations
 {
     /// <inheritdoc />
     public partial class AddUserPassword : Migration
@@ -10,19 +10,19 @@ namespace api.Data.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<byte>(
+            migrationBuilder.AddColumn<byte[]>(
                 name: "PasswordHash",
                 table: "Users",
-                type: "INTEGER",
+                type: "BLOB",
                 nullable: false,
-                defaultValue: (byte)0);
+                defaultValue: new byte[0]);
 
-            migrationBuilder.AddColumn<byte>(
+            migrationBuilder.AddColumn<byte[]>(
                 name: "PasswordSalt",
                 table: "Users",
-                type: "INTEGER",
+                type: "BLOB",
                 nullable: false,
-                defaultValue: (byte)0);
+                defaultValue: new byte[0]);
         }
 
         /// <inheritdoc />
