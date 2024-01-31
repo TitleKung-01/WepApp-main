@@ -1,10 +1,9 @@
-﻿using System;
-using CloudinaryDotNet.Actions;
+﻿using CloudinaryDotNet.Actions;
 
-namespace API.Interfaces;
+namespace api;
 
 public interface IImageService
 {
-    Task<ImageUploadResult> AddImageAsync(IFormFile file);
-    Task<DeletionResult> DeleteImageAsync(string publicId); //from Photo.cs -> PublicId
+  Task<ImageUploadResult> AddImageAsync(IFormFile file);
+  Task<DeletionResult> DeleteImageAsync(string publicId); //from Photo.cs -> PublicId
 }

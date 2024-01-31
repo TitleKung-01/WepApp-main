@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace API.Data.Migrations
+namespace api.Data.Migrations
 {
     /// <inheritdoc />
     public partial class ExtendedUserEntity : Migration
@@ -11,6 +11,22 @@ namespace API.Data.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterColumn<byte[]>(
+                name: "PasswordSalt",
+                table: "Users",
+                type: "BLOB",
+                nullable: true,
+                oldClrType: typeof(byte),
+                oldType: "INTEGER");
+
+            migrationBuilder.AlterColumn<byte[]>(
+                name: "PasswordHash",
+                table: "Users",
+                type: "BLOB",
+                nullable: true,
+                oldClrType: typeof(byte),
+                oldType: "INTEGER");
+
             migrationBuilder.AddColumn<string>(
                 name: "Aka",
                 table: "Users",
@@ -75,32 +91,31 @@ namespace API.Data.Migrations
                 nullable: true);
 
             migrationBuilder.CreateTable(
-                name: "Photos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    AppUserID = table.Column<int>(type: "INTEGER", nullable: false),
-                    Url = table.Column<string>(type: "TEXT", nullable: true),
-                    PublicId = table.Column<string>(type: "TEXT", nullable: true),
-                    IsMain = table.Column<bool>(type: "INTEGER", nullable: false)
-
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Photos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Photos_Users_AppUserID",
-                        column: x => x.AppUserID,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
+        name: "Photos",
+        columns: table => new
+        {
+            Id = table.Column<int>(type: "INTEGER", nullable: false)
+                .Annotation("Sqlite:Autoincrement", true),
+            Url = table.Column<string>(type: "TEXT", nullable: true),
+            PublicId = table.Column<string>(type: "TEXT", nullable: true),
+            IsMain = table.Column<bool>(type: "INTEGER", nullable: false),
+            AppUserID = table.Column<int>(type: "INTEGER", nullable: false)
+        },
+        constraints: table =>
+        {
+            table.PrimaryKey("PK_Photos", x => x.Id);
+            table.ForeignKey(
+                name: "FK_Photos_Users_AppUserID",
+                column: x => x.AppUserID,
+                principalTable: "Users",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
+        });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Photos_AppUserID",
+                name: "IX_Photos_AppUserId",
                 table: "Photos",
-                column: "AppUserID");
+                column: "AppUserId");
         }
 
         /// <inheritdoc />
@@ -148,6 +163,26 @@ namespace API.Data.Migrations
             migrationBuilder.DropColumn(
                 name: "LookingFor",
                 table: "Users");
+
+            migrationBuilder.AlterColumn<byte>(
+                name: "PasswordSalt",
+                table: "Users",
+                type: "INTEGER",
+                nullable: false,
+                defaultValue: (byte)0,
+                oldClrType: typeof(byte[]),
+                oldType: "BLOB",
+                oldNullable: true);
+
+            migrationBuilder.AlterColumn<byte>(
+                name: "PasswordHash",
+                table: "Users",
+                type: "INTEGER",
+                nullable: false,
+                defaultValue: (byte)0,
+                oldClrType: typeof(byte[]),
+                oldType: "BLOB",
+                oldNullable: true);
         }
     }
 }

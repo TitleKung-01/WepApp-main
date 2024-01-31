@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "ngx-long-press2": "^16.1.0",
+    "ngx-timeago": "^3.0.0",
     "rxjs": "^7.8.1"
   }
 }

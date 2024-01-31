@@ -1,1 +1,123 @@
-<p>messages works!</p>
+<div class="container mb-3">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-3 btn-group float-end">
+      <button
+        class="btn btn-primary"
+        type="button"
+        btnRadio="Inbox"
+        name="label"
+        [(ngModel)]="label"
+        (click)="loadMessage()"
+      >
+        <fa-icon [icon]="faEnvelopeOpen"></fa-icon> Inbox
+      </button>
+      <button
+        class="btn btn-primary"
+        type="button"
+        btnRadio="Unread"
+        name="label"
+        [(ngModel)]="label"
+        (click)="loadMessage()"
+      >
+        <fa-icon [icon]="faEnvelope"></fa-icon> Unread
+      </button>
+      <button
+        class="btn btn-primary"
+        type="button"
+        btnRadio="Sent"
+        name="label"
+        [(ngModel)]="label"
+        (click)="loadMessage()"
+      >
+        <fa-icon [icon]="faPaperPlane"></fa-icon> Sent
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="d-flex justify-content-center">
+      <h5 *ngIf="!messages || messages.length <= 0">No messages</h5>
+      <div
+        [hidden]="loading"
+        class="col-12"
+        *ngIf="messages && messages.length > 0"
+      >
+        <table class="table table-hover" style="cursor: pointer">
+          <thead>
+            <tr>
+              <th style="width: 50%">Message</th>
+              <th style="width: 20%" *ngIf="label === 'Sent'">To</th>
+              <th style="width: 20%" *ngIf="label === 'Sent'">Sent</th>
+              <th style="width: 20%" *ngIf="label !== 'Sent'">From</th>
+              <th style="width: 20%" *ngIf="label !== 'Sent'">Received</th>
+              <th style="width: 10%"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="align-middle"
+              *ngFor="let message of messages"
+              [queryParams]="{ tab: 'Messages' }"
+              routerLink="/members/name/{{
+                label === 'Sent'
+                  ? message.recipientUsername
+                  : message.senderUsername
+              }}"
+            >
+              <td>{{ message.content }}</td>
+              <td>
+                <div *ngIf="label === 'Sent'">
+                  <img
+                    class="img-circle rounded-circle me-2"
+                    src="{{
+                      message.recipientPhotoUrl ||
+                        './assets/images/default-user.png'
+                    }}"
+                    alt="recipient photo"
+                  />
+                  <strong>{{ message.recipientUsername | titlecase }}</strong>
+                </div>
+                <div *ngIf="label !== 'Sent'">
+                  <img
+                    class="img-circle rounded-circle me-2"
+                    src="{{
+                      message.senderPhotoUrl ||
+                        './assets/images/default-user.png'
+                    }}"
+                    alt="recipient photo"
+                  />
+                  <strong>{{ message.senderUsername | titlecase }}</strong>
+                </div>
+              </td>
+              <td>{{ message.dateSent | timeago }}</td>
+              <td>
+                <button
+                  (click)="$event.stopPropagation()"
+                  (click)="deleteMessage(message.id)"
+                  class="btn btn-danger"
+                >
+                  <fa-icon [icon]="faTrashcan"> </fa-icon> Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-center" *ngIf="pagination">
+          <pagination
+            [boundaryLinks]="true"
+            [totalItems]="pagination.totalItems"
+            [itemsPerPage]="pagination.itemsPerpage"
+            [maxSize]="10"
+            [(ngModel)]="pagination.currentPage"
+            (pageChanged)="pageChanged($event)"
+            previousText="&lsaquo;"
+            nextText="&rsaquo;"
+            firstText="&laquo;"
+            lastText="&raquo;"
+          >
+          </pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

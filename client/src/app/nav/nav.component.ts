@@ -1,45 +1,41 @@
-import { Component, OnInit } from '@angular/core'
-import { AccountService } from '../_services/account.service'
-import { Observable, of } from 'rxjs'
-import { User } from '../_models/user'
-import { Router, Routes } from '@angular/router'
-import { ToastrService } from 'ngx-toastr'
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AccountService } from '../_services/account.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  styleUrls: ['./nav.component.css'],
 })
-export class NavComponent implements OnInit {
-  model: { username: string | undefined, password: string | undefined } = {
+export class NavComponent {
+  constructor(
+    private toastr: ToastrService,
+    private router: Router,
+    public accountService: AccountService
+  ) {}
+
+  model: { username: string | undefined; password: string | undefined } = {
     username: undefined,
-    password: undefined
-  }
-
-  currentUser$: Observable<User | null> = of(null)
-
-  constructor(private accountService: AccountService, private router: Router, private toastr: ToastrService) { }
-
-  ngOnInit(): void {
-    this.currentUser$ = this.accountService.currentUser$
-  }
+    password: undefined,
+  };
 
   getCurrentUser() {
     this.accountService.currentUser$.subscribe({
-      // next: user => this.isLogin = !!user, // user?true:false
-      error: err => console.log(err)
-    })
+      next: (user) => console.log(user),
+      error: (err) => console.log(err),
+    });
   }
 
   login(): void {
-    this.accountService.login(this.model).subscribe({ //Observable
-      next: _ => this.router.navigateByUrl('/members'),
-      // error: err => this.toastr.error(err.error)
-    })
+    this.accountService.login(this.model).subscribe({
+      next: (response) => this.router.navigateByUrl('/members'),
+      // error: (err) => this.toastr.error(err.error),
+    });
   }
 
-  logout() {
-    this.accountService.logout()
-    this.router.navigateByUrl("/")
+  logout(): void {
+    this.accountService.logout();
+    this.router.navigateByUrl('/');
   }
 }

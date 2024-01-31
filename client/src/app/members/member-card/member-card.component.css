@@ -9,7 +9,9 @@
     transition-duration: 0.1s;
     transition-timing-function: ease-out;
 }
-
+.card-img-wrapper {
+    overflow: hidden;
+}
 .card-img-wrapper {
     overflow: hidden;
     position: relative;

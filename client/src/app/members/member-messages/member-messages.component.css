@@ -1,0 +1,17 @@
+.card {
+  border: none;
+}
+
+.direct-message {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.direct-message li {
+  margin-top: 15px;
+}
+
+.rounded-circle {
+  max-width: 50px;
+}
