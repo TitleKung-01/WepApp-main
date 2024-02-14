@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class AccountService {
   baseUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   private currentUserSource = new BehaviorSubject<User | null>(null);
   currentUser$ = this.currentUserSource.asObservable(); //the $ is convention to signify that this is observable
@@ -26,7 +26,7 @@ export class AccountService {
   }
 
   register(model: any) {
-    return this.http.post<User>(`${this.baseUrl}/account/register`, model).pipe(
+    return this.http.post<User>(`${this.baseUrl}/account/register/`, model).pipe(
       map((user: User) => {
         if (user) {
           this.setCurrentUser(user); //
